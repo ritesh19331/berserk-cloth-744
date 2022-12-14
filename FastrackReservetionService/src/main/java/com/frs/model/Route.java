@@ -3,9 +3,12 @@ package com.frs.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.Id;
 
@@ -23,10 +26,14 @@ public class Route {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer routeId;
+	@NotNull(message = "Start point cannot be null!")
 	private String routeFrom;
+	@NotNull(message = "Destination point cannot be null!")
 	private String routeTo;
+	@NotNull(message = "Destination point cannot be null!")
 	private Integer distance;
-	private List<Bus> bus = new ArrayList<>();
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "route")
+	private List<Bus> buses = new ArrayList<>();
 	
 
 }

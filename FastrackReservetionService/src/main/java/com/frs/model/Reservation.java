@@ -6,6 +6,8 @@ import java.time.LocalTime;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.ManyToOne;
+
 import org.springframework.data.annotation.Id;
 
 import lombok.AllArgsConstructor;
@@ -28,7 +30,11 @@ public class Reservation {
 	private String source;
 	private String destination;
 	
+	@ManyToOne
 	private Bus bus;
+	
+	@ManyToOne
+	private User user;
 	
 
 }
