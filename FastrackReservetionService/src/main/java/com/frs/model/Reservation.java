@@ -3,6 +3,7 @@ package com.frs.model;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,11 +31,11 @@ public class Reservation {
 	private String source;
 	private String destination;
 	
-	@ManyToOne
-	private Bus bus;
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Bus rBus;
 	
-	@ManyToOne
-	private User user;
+	@ManyToOne(cascade = CascadeType.ALL)
+	private User rUser;
 	
 
 }
