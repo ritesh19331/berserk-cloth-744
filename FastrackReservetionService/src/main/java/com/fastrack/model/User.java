@@ -1,4 +1,4 @@
-package com.frs.model;
+package com.fastrack.model;
 
 import java.util.ArrayList;
 import java.util.List;

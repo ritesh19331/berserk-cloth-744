@@ -1,4 +1,4 @@
-package com.frs.model;
+package com.fastrack.model;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
