@@ -30,9 +30,10 @@ public class Route {
 	private String routeFrom;
 	@NotNull(message = "Destination point cannot be null!")
 	private String routeTo;
-	@NotNull(message = "Destination point cannot be null!")
+	@NotNull(message = "Distance cannot be null!")
 	private Integer distance;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "route")
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "busRoute")
 	private List<Bus> buses = new ArrayList<>();
 	
 

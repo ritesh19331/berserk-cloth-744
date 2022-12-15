@@ -54,7 +54,10 @@ public class User {
 	@NotNull(message = "Email Id Must Need With Poper Email Stucture. Please Provide Right Detailes")
 	private String email;
 	
-	@OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
-	private List<Reservation> reservations = new ArrayList<>();
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "rUser")
+	private List<Reservation> userReservations = new ArrayList<>();
+	
+	@OneToMany(mappedBy ="fUser",cascade = CascadeType.ALL )
+	private List<Feedback> uFeedbacks=new ArrayList<>();
 	
 }
