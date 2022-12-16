@@ -1,14 +1,19 @@
-package com.frs.model;
+package com.fastrack.model;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.data.annotation.Id;
+import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,10 +34,6 @@ public class Bus {
 	private String driverName;
 	@NotNull(message = "Provide Bus Type Like Ac, Non-Ac, Sleeper, Double Decar, Single Decar and etc.")
 	private String busType;
-	@NotNull(message = "Provide Bus Starting Point")
-	private String routeFrom;
-	@NotNull(message = "Provide Bus Ending Point")
-	private String routeTo;
 	
 	@NotNull(message = "Provide Bus Arrival Time")
 	private LocalTime arrivalTime;
@@ -45,6 +46,14 @@ public class Bus {
 
 	@NotNull(message = "Provide Amount Of Per Seat")
 	private Integer pricePerSeat;
+	
 	@ManyToOne
-	private Route route;
+	@JoinColumn(name="B_Route")
+	private Route busRoute;
+	
+	@OneToMany(mappedBy = "fBus",cascade = CascadeType.ALL)
+	private List<Feedback> bFeedback=new ArrayList<>();
+	
+	@OneToMany(mappedBy = "rBus",cascade =  CascadeType.ALL)
+	private List<Reservation> reservations=new ArrayList<>();
 }

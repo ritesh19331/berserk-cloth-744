@@ -1,14 +1,16 @@
-package com.frs.model;
+package com.fastrack.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Size;
 
-import org.springframework.data.annotation.Id;
+import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,10 +33,12 @@ public class Feedback {
 	private Integer overallRating;
 	private String comments;
 	private LocalDate feedbackdate;
-	@OneToOne
-	private User users;
-	@OneToOne
-	private Bus bus;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	private User fUser;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Bus fBus;
 	
 
 }

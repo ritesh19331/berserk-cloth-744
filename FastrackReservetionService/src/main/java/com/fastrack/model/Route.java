@@ -1,4 +1,4 @@
-package com.frs.model;
+package com.fastrack.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.data.annotation.Id;
+import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,9 +30,10 @@ public class Route {
 	private String routeFrom;
 	@NotNull(message = "Destination point cannot be null!")
 	private String routeTo;
-	@NotNull(message = "Destination point cannot be null!")
+	@NotNull(message = "Distance cannot be null!")
 	private Integer distance;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "route")
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "busRoute")
 	private List<Bus> buses = new ArrayList<>();
 	
 
