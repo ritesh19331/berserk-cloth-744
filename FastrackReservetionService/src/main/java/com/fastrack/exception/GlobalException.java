@@ -24,7 +24,14 @@ public class GlobalException {
 	public ResponseEntity<MyErrorDetails> adminException(AdminException exp, WebRequest webRequest){
 		return new ResponseEntity<MyErrorDetails>(new MyErrorDetails(LocalDateTime.now(),exp.getMessage(),webRequest.getDescription(false)),HttpStatus.BAD_REQUEST);
 	}
-
+	@ExceptionHandler(RouteException.class)
+	public ResponseEntity<MyErrorDetails> adminException(RouteException exp, WebRequest webRequest){
+		return new ResponseEntity<MyErrorDetails>(new MyErrorDetails(LocalDateTime.now(),exp.getMessage(),webRequest.getDescription(false)),HttpStatus.BAD_REQUEST);
+	}
+	@ExceptionHandler(FeedbackException.class)
+	public ResponseEntity<MyErrorDetails> adminException(FeedbackException exp, WebRequest webRequest){
+		return new ResponseEntity<MyErrorDetails>(new MyErrorDetails(LocalDateTime.now(),exp.getMessage(),webRequest.getDescription(false)),HttpStatus.BAD_REQUEST);
+	}
 	
 	@ExceptionHandler(LogException.class)
 	public ResponseEntity<MyErrorDetails> logException(LogException exp, WebRequest webRequest){
