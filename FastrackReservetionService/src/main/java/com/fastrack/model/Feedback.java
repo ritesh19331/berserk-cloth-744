@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Size;
-
 import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
@@ -22,7 +21,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Feedback {
 	
-	@Id
+	@javax.persistence.Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer feedBackId;
 	@Size(min = 1, max = 5 ,message = "Rating Driver in between of 1-5 Points")

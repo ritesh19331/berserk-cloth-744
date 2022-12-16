@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 public class Route {
 	
 	
-	@Id
+	@javax.persistence.Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer routeId;
 	@NotNull(message = "Start point cannot be null!")
