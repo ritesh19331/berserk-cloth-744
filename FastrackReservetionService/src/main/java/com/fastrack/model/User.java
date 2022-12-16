@@ -15,7 +15,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -54,8 +53,8 @@ public class User {
 	@Column(unique = true)
 	private String mobileNumber;
 	
-	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
+	
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "rUser")
 	private List<Reservation> reservations = new ArrayList<>();
 	
 	@OneToMany(mappedBy ="fUser",cascade = CascadeType.ALL )
