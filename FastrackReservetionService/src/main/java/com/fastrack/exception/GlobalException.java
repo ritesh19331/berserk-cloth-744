@@ -13,13 +13,22 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 @ControllerAdvice
 public class GlobalException {
 	
-	
+	@ExceptionHandler(AdminException.class)
+	public ResponseEntity<MyErrorDetails> adminException(AdminException exp, WebRequest webRequest){
+		return new ResponseEntity<MyErrorDetails>(new MyErrorDetails(LocalDateTime.now(),exp.getMessage(),webRequest.getDescription(false)),HttpStatus.BAD_REQUEST);
+	}
+
 	
 	@ExceptionHandler(LogException.class)
 	public ResponseEntity<MyErrorDetails> logException(LogException exp, WebRequest webRequest){
 		return new ResponseEntity<MyErrorDetails>(new MyErrorDetails(LocalDateTime.now(),exp.getMessage(),webRequest.getDescription(false)),HttpStatus.BAD_REQUEST);
 	}
 	
+	@ExceptionHandler(UserException.class)
+	public ResponseEntity<MyErrorDetails> userException(UserException exp, WebRequest webRequest){
+		return new ResponseEntity<MyErrorDetails>(new MyErrorDetails(LocalDateTime.now(),exp.getMessage(),webRequest.getDescription(false)),HttpStatus.BAD_REQUEST);
+	}
+
 	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<MyErrorDetails> validatedException(MethodArgumentNotValidException exp,WebRequest webRequest){
@@ -39,6 +48,7 @@ public class GlobalException {
 		
 		return new ResponseEntity<MyErrorDetails>(new MyErrorDetails(LocalDateTime.now(),exp.getMessage(),webRequest.getDescription(false)),HttpStatus.BAD_REQUEST);
 	}
+
 	
 	@ExceptionHandler(BusException.class)
 	public ResponseEntity<MyErrorDetails> exception(BusException exp,WebRequest webRequest){ 
@@ -46,3 +56,4 @@ public class GlobalException {
 		return new ResponseEntity<MyErrorDetails>(new MyErrorDetails(LocalDateTime.now(),exp.getMessage(),webRequest.getDescription(false)),HttpStatus.BAD_REQUEST);
 	}
 }
+
