@@ -55,7 +55,7 @@ public class User {
 	private String mobileNumber;
 	
 	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "rUser")
 	private List<Reservation> reservations = new ArrayList<>();
 	
 	@OneToMany(mappedBy ="fUser",cascade = CascadeType.ALL )
