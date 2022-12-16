@@ -1,0 +1,80 @@
+package com.fastrack.service;
+
+import java.time.LocalDateTime;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.fastrack.exception.LogException;
+import com.fastrack.model.CurrentUserSession;
+import com.fastrack.model.User;
+import com.fastrack.model.UserLoginDTO;
+import com.fastrack.repository.UserDao;
+import com.fastrack.repository.UserSessionDao;
+
+import net.bytebuddy.utility.RandomString;
+
+@Service
+public class UserLoginServiceImp implements UserLoginService {
+
+	@Autowired
+	private UserDao userDao;
+
+	@Autowired
+	private UserSessionDao userSessionDao;
+
+	@Override
+	public CurrentUserSession logInUser(UserLoginDTO dto) throws LogException {
+
+		User existingUserByEmail = userDao.findByEmail(dto.getEmail());
+//		
+//		User existingUserByMobile = userDao.findByMobileNumber(dto.getMobileNumber()); 
+		
+
+		if (existingUserByEmail == null)
+			throw new LogException("No User with this Email Id");
+//		if (existingUserByMobile == null)
+//			throw new LogException("No User with this  Mobile Number");
+		
+		Optional<CurrentUserSession> currentUser = userSessionDao.findById(existingUserByEmail.getUserId());
+
+//		Optional<CurrentUserSession> currentUserByMobile = userSessionDao.findById(existingUserByMobile.getUserId());
+		
+		
+		if (currentUser.isPresent()) {
+
+			throw new LogException("User already Logged-In");
+		}
+		if (existingUserByEmail.getUserPassword().equals(dto.getUserPassword())) {
+
+			String key = RandomString.make(6);
+
+			return userSessionDao.save(new CurrentUserSession(existingUserByEmail.getUserId(), key, LocalDateTime.now()));
+		} 
+		
+//		else if(existingUserByMobile.getUserPassword().equals(dto.getPassword())) {
+//			String key = RandomString.make(6);
+//
+//			return userSessionDao.save(new CurrentUserSession(existingUserByMobile.getUserId(), key, LocalDateTime.now()));
+//		
+//		}
+		
+		else
+			throw new LogException("Password is wrong "+dto.getUserPassword()+". Enter right Password");
+	}
+
+	@Override
+	public String logOutUser(String key) throws LogException {
+
+		CurrentUserSession currentUser = userSessionDao.findByUpdateKey(key);
+
+		if (currentUser == null)
+			throw new LogException("Without Log In can't perform Log Out.");
+
+		userSessionDao.delete(currentUser);
+
+		return "Log Out Successful";
+	}
+
+}
