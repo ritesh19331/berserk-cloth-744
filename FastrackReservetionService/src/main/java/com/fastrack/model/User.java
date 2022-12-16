@@ -53,7 +53,8 @@ public class User {
 	@Column(unique = true)
 	private String mobileNumber;
 	
-	
+
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL,mappedBy = "rUser")
 	private List<Reservation> reservations = new ArrayList<>();
 	

@@ -1,3 +1,5 @@
+
+
 package com.fastrack.model;
 
 import javax.validation.constraints.NotNull;
