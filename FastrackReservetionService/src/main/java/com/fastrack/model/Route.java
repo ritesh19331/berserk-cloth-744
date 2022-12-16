@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
+import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

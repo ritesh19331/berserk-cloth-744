@@ -24,6 +24,7 @@ public class GlobalException {
 	public ResponseEntity<MyErrorDetails> adminException(AdminException exp, WebRequest webRequest){
 		return new ResponseEntity<MyErrorDetails>(new MyErrorDetails(LocalDateTime.now(),exp.getMessage(),webRequest.getDescription(false)),HttpStatus.BAD_REQUEST);
 	}
+
 	
 	@ExceptionHandler(LogException.class)
 	public ResponseEntity<MyErrorDetails> logException(LogException exp, WebRequest webRequest){
@@ -34,6 +35,7 @@ public class GlobalException {
 	public ResponseEntity<MyErrorDetails> userException(UserException exp, WebRequest webRequest){
 		return new ResponseEntity<MyErrorDetails>(new MyErrorDetails(LocalDateTime.now(),exp.getMessage(),webRequest.getDescription(false)),HttpStatus.BAD_REQUEST);
 	}
+
 	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<MyErrorDetails> validatedException(MethodArgumentNotValidException exp,WebRequest webRequest){
@@ -54,4 +56,11 @@ public class GlobalException {
 		return new ResponseEntity<MyErrorDetails>(new MyErrorDetails(LocalDateTime.now(),exp.getMessage(),webRequest.getDescription(false)),HttpStatus.BAD_REQUEST);
 	}
 
+	
+	@ExceptionHandler(BusException.class)
+	public ResponseEntity<MyErrorDetails> exception(BusException exp,WebRequest webRequest){ 
+		
+		return new ResponseEntity<MyErrorDetails>(new MyErrorDetails(LocalDateTime.now(),exp.getMessage(),webRequest.getDescription(false)),HttpStatus.BAD_REQUEST);
+	}
 }
+
