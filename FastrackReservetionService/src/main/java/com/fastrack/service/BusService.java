@@ -4,11 +4,12 @@ import java.util.List;
 
 import com.fastrack.exception.AdminException;
 import com.fastrack.exception.BusException;
+import com.fastrack.exception.RouteException;
 import com.fastrack.model.Bus;
 
 public interface BusService {
 	
-	public Bus addBus(Bus bus,String key) throws BusException , AdminException;
+	public Bus addBus(Bus bus,Integer routeId,String key) throws BusException , AdminException, RouteException;
 	public Bus updateBus(Bus bus,String key) throws BusException ,AdminException;
 	public Bus deleteBus(Integer budId,String key) throws BusException ,AdminException;
 	public Bus viewBus(Integer busId,String key) throws BusException ,AdminException;

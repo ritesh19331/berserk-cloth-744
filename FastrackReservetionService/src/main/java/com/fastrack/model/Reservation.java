@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -43,9 +45,11 @@ public class Reservation {
 	@NotNull(message = "Provide User Destination")
 	private String destination;
 	
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Bus rBus;
 	
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
 	private User rUser;
 	
