@@ -3,4 +3,4 @@
 ![](https://github.com/ritesh19331/berserk-cloth-744/blob/main/fastTracckGif2.gif)
 
 ## Project Description
-  A web application developed using spring boot framework, focus on exploring features of Spring Boot as a Software development framework. It is also to showcase the knowledge acquired which is not restricted to performing CRUD operation but also to provide the client with proper response to the requests, irrespective of the nature of the requests.  
+  A web application developed using spring boot framework, focusing on exploring the features of Spring Boot as a Software development framework. It is also to showcase the knowledge acquired not restricted to performing CRUD operations but to provide the client with the proper response to the requests, irrespective of their nature. 
