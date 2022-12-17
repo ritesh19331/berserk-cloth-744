@@ -8,11 +8,14 @@ import org.springframework.stereotype.Service;
 
 import com.fastrack.exception.AdminException;
 import com.fastrack.exception.BusException;
+import com.fastrack.exception.RouteException;
 import com.fastrack.model.Bus;
 import com.fastrack.model.CurrentAdminSession;
+import com.fastrack.model.Route;
 import com.fastrack.repository.AdminDao;
 import com.fastrack.repository.AdminSessionDao;
 import com.fastrack.repository.BusDao;
+import com.fastrack.repository.RouteDao;
 
 
 @Service
@@ -22,17 +25,23 @@ public class BusServiceImpl  implements BusService{
 	private BusDao busDao;
 	
 	@Autowired
+	private RouteDao routeDao;
+	
+	@Autowired
 	private AdminSessionDao adminSessionDao;
 	
 	@Override
-	public Bus addBus(Bus bus,String key) throws BusException, AdminException {
+	public Bus addBus(Bus bus, Integer routeId,String key) throws BusException, AdminException , RouteException{
 		
 		CurrentAdminSession currentAdminSession =	adminSessionDao.findByUpdateKey(key);
 		
 		if(currentAdminSession==null)
 			throw new AdminException("Admin Login Required...");
+		Optional<Route> opt=routeDao.findById(routeId);
+		if(opt.isEmpty()) throw new RouteException("Route no present with id :"+ routeId);
 		
-		
+		Route route=opt.get();
+		bus.setBusRoute(route);
 		Bus b=null;
 		try {
 			b = busDao.save(bus);
@@ -60,7 +69,7 @@ public class BusServiceImpl  implements BusService{
 		
 		return busDao.save(bus);
 	}
-
+	
 	@Override
 	public Bus deleteBus(Integer busId,String key) throws BusException  ,AdminException {
 		CurrentAdminSession currentAdminSession =	adminSessionDao.findByUpdateKey(key);
@@ -75,7 +84,7 @@ public class BusServiceImpl  implements BusService{
 		
 		return opt.get();
 	}
-
+	
 	@Override
 	public Bus viewBus(Integer busId,String key) throws BusException  ,AdminException {
 		CurrentAdminSession currentAdminSession =	adminSessionDao.findByUpdateKey(key);

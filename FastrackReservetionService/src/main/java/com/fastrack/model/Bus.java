@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,25 +30,27 @@ public class Bus {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer busId;
-	@NotNull(message = "Provide Bus Name, Because It Must Needed")
+	
+	@NotNull(message = "Bus Name Mandatory")
 	private String busName;
-	@NotNull(message = "Provide Bus Driver Name, Because It Must Needed")
+	@NotNull(message = "Driver Name Mandatory")
 	private String driverName;
-	@NotNull(message = "Provide Bus Type Like Ac, Non-Ac, Sleeper, Double Decar, Single Decar and etc.")
+	@NotNull(message = "Bus Type Mandatory")
 	private String busType;
 	
-	@NotNull(message = "Provide Bus Arrival Time")
+	@NotNull(message = "Arrival Time Mandatory")
 	private LocalTime arrivalTime;
-	@NotNull(message = "Provide Bus Departure Time")
+	@NotNull(message = "Departure Time Mandartory")
 	private LocalTime departureTime;
-	@NotNull(message = "Provide Total Number Of Seats")
+	@NotNull(message = "Number Of Seats Mandatory")
 	private Integer seats;
-	@NotNull(message = "Provide Avaiable Number Of Seats")
-	private Integer avaiableSeats;
+	@NotNull(message = "AvailableSeats Mandatory")
+	private Integer availableSeats;
 
-	@NotNull(message = "Provide Amount Of Per Seat")
+	@NotNull(message = "Price Per Seats mandatory")
 	private Integer pricePerSeat;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="B_Route")
 	private Route busRoute;
