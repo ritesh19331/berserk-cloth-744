@@ -58,13 +58,15 @@ public class FeedbackServiceImpl implements FeedbackService{
 		User user=opt2.get();
 		
 		feedback.setFUser(user);
-		user.setUFeedbacks(feedback);
+		user.getUFeedbacks().add(feedback);
 		bus.getBFeedback().add(feedback);
 		feedback.setFBus(bus);
 		
-		busDao.save(bus);
+//		busDao.save(bus);
 
-		return feedback;
+		return fDao.save(feedback);
+		
+		
 	}
 
 	@Override
