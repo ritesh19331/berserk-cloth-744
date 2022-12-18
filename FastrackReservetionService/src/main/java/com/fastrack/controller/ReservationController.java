@@ -1,11 +1,17 @@
 package com.fastrack.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,6 +22,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fastrack.exception.AdminException;
 import com.fastrack.exception.BusException;
 import com.fastrack.exception.ReservationException;
@@ -45,7 +52,7 @@ public class ReservationController {
 		return new ResponseEntity<Reservation>(reservation2, HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/deletereservation/{key}")
+	@DeleteMapping("/deletereservation/{resId}/{key}")
 	
 	public ResponseEntity<Reservation> cancelReservation( @PathVariable("resId") Integer reservationId, @PathVariable("key") String key) throws ReservationException, UserException{
 		
@@ -72,11 +79,16 @@ public class ReservationController {
 	}
 	
 	@GetMapping("/showallreservationsbydate/{date}/{key}")
-	public ResponseEntity<List<Reservation>> showAllReservationsByDate(@Valid @PathVariable("date")LocalDate date, @PathVariable("key")String key) throws ReservationException, AdminException{
+	public ResponseEntity<List<Reservation>> showAllReservationsByDate(@Valid @PathVariable("date")String SDate, @PathVariable("key")String key) throws ReservationException, AdminException, ParseException{
 		
-		List<Reservation> reservations = reservationService.getAllReservationsByDate(date, key);
+		LocalDate localDate = LocalDate.parse(SDate);
 		
+		System.out.println(localDate);
+
+		List<Reservation> reservations = reservationService.getAllReservationsByDate(localDate, key);
+
 		return new ResponseEntity<List<Reservation>>(reservations,HttpStatus.OK);
+		
 	}
 
 }

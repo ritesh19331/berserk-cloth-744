@@ -60,11 +60,11 @@ public class User {
 	@OneToMany(cascade = CascadeType.ALL,mappedBy = "rUser")
 	private List<Reservation> reservations = new ArrayList<>();
 
-//	@JsonIgnore
-//	@OneToMany(mappedBy ="fUser",cascade = CascadeType.ALL )
-//	private List<Feedback> uFeedbacks=new ArrayList<>();
 	@JsonIgnore
-	@OneToOne(cascade = CascadeType.ALL )
-	private Feedback uFeedbacks;
+	@OneToMany(mappedBy ="fUser",cascade = CascadeType.ALL )
+	private List<Feedback> uFeedbacks=new ArrayList<>();
+//	@JsonIgnore
+//	@OneToOne(cascade = CascadeType.ALL )
+//	private Feedback uFeedbacks;
 	
 }

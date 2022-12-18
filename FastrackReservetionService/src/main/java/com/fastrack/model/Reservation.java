@@ -9,8 +9,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
@@ -33,6 +38,7 @@ public class Reservation {
 	@NotNull(message = "Provide Reservation Type")
 	private String reservationType;
 	
+
 	@NotNull(message = "Provide Reservation Date")
 	private LocalDate reservationDate;
 	
@@ -45,12 +51,20 @@ public class Reservation {
 	@NotNull(message = "Provide User Destination")
 	private String destination;
 	
-	@JsonIgnore
-	@ManyToOne(cascade = CascadeType.ALL)
-	private Bus rBus;
+//	@JsonIgnore
+//	@ManyToOne(cascade = CascadeType.ALL)
+//	private Bus rBus;
 	
 	@JsonIgnore
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
+	private Bus rBus;
+	
+//	@JsonIgnore
+//	@ManyToOne(cascade = CascadeType.ALL)
+//	private User rUser;
+	
+	@JsonIgnore
+	@ManyToOne
 	private User rUser;
 	
 

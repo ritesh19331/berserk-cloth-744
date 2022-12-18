@@ -52,14 +52,14 @@ public class Feedback {
 	
 	private LocalDate feedbackdate;
 
-//	@JsonIgnore
-//	@ManyToOne(cascade = CascadeType.ALL)
-//	private User fUser;
-	
-	
 	@JsonIgnore
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	private User fUser;
+	
+//	
+//	@JsonIgnore
+//	@OneToOne(cascade = CascadeType.ALL)
+//	private User fUser;
 	
 	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
