@@ -64,6 +64,5 @@ public class Feedback {
 	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Bus fBus;
-	
 
 }
