@@ -31,9 +31,9 @@
 
 ## EER Diagram
 
-https://github.com/ritesh19331/berserk-cloth-744/blob/main/FastTrackBusServiceErDiagram12.png
-https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png
-https://github.com/ritesh19331/berserk-cloth-744/blob/main/fastTracckGif2.gif
+[](https://github.com/ritesh19331/berserk-cloth-744/blob/main/FastTrackBusServiceErDiagram12.png)
+[](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)
+[](https://github.com/ritesh19331/berserk-cloth-744/blob/main/fastTracckGif2.gif)
 
 
 <img align ="center" width="100%" src="https://github.com/ritesh19331/berserk-cloth-744/blob/main/FastTrackBusServiceErDiagram12.png" />
