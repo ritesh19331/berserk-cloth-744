@@ -76,5 +76,34 @@ public class UserLoginServiceImp implements UserLoginService {
 
 		return "Log Out Successful";
 	}
+	
+
+	
+
+		CurrentUserSession currentUser = userSessionDao.findByUpdateKey(key);
+
+		if (currentUser == null)
+
+			throw new LogException("Without Log In can't perform Log Out.");
+
+		userSessionDao.delete(currentUser);
+
+		return "Log Out Successful";
+
+	}Override
+
+	public String logOutUser(String key) throws LogException {
+
+		CurrentUserSession currentUser = userSessionDao.findByUpdateKey(key);
+
+		if (currentUser == null)
+
+			throw new LogException("Without Log In can't perform Log Out.");
+
+		userSessionDao.delete(currentUser);
+
+		return "Log Out Successful";
+
+	}
 
 }
