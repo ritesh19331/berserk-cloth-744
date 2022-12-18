@@ -84,7 +84,6 @@ public class UserServiceImp implements UserService {
 		
 
 		List<User> users = userDao.findAll();
-		List<User> users2 = userDao.findAll();
 		if (users.isEmpty())
 			throw new UserException("No User registered in this application");
 
