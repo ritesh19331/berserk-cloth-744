@@ -35,14 +35,14 @@ public class AdminServiceImp implements AdminService{
 		
 		CurrentAdminSession loggedInAdmin= adminSessionDao.findByUpdateKey(key);
 		
-		if(loggedInAdmin == null) {
+		if(loggedInAdmin == null) 
 			throw new AdminException("Please provide a valid key to update Admin Details");
-		}
 		
-		if(admin.getAdminId() == loggedInAdmin.getAdminId()) {
+		
+		if(admin.getAdminId() == loggedInAdmin.getAdminId()) 
 			
 			return adminDao.save(admin);
-		}
+		
 		else
 			throw new AdminException("Please login with admin detailes");
 	}

@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.fastrack.exception.AdminException;
+import com.fastrack.exception.BusException;
 import com.fastrack.exception.ReservationException;
 import com.fastrack.exception.UserException;
 import com.fastrack.model.Reservation;
@@ -12,8 +13,8 @@ import com.fastrack.model.Reservation;
 
 
 public interface ReservationService {
-	
-	public Reservation addReservation(Reservation reservation, String key )throws ReservationException, UserException;
+	// reservation only possible if there exist a bus and number of seats
+	public Reservation addReservation(Reservation reservation,Integer busId, String key )throws ReservationException, UserException, BusException;
 	
 	public Reservation updateReservation(Reservation reservation, String key)throws ReservationException, UserException;
 	

@@ -8,13 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fastrack.exception.AdminException;
+import com.fastrack.exception.BusException;
 import com.fastrack.exception.ReservationException;
 import com.fastrack.exception.UserException;
+import com.fastrack.model.Bus;
 import com.fastrack.model.CurrentAdminSession;
 import com.fastrack.model.CurrentUserSession;
 import com.fastrack.model.Reservation;
+import com.fastrack.model.User;
 import com.fastrack.repository.AdminSessionDao;
+import com.fastrack.repository.BusDao;
 import com.fastrack.repository.ReservationDao;
+import com.fastrack.repository.UserDao;
 import com.fastrack.repository.UserSessionDao;
 
 
@@ -28,11 +33,17 @@ public class ReservationServiceImpl implements ReservationService{
 	private UserSessionDao userSessionDao;
 	
 	@Autowired
+	private BusDao busDao;
+	
+	@Autowired
+	private UserDao userDao;
+	
+	@Autowired
 	private AdminSessionDao adminSessionDao;
 	
 
 	@Override
-	public Reservation addReservation(Reservation reservation, String key) throws ReservationException, UserException {
+	public Reservation addReservation(Reservation reservation,Integer busId, String key) throws ReservationException, UserException, BusException {
 		
 		CurrentUserSession currentUserSession =  userSessionDao.findByUpdateKey(key);
 		
@@ -40,9 +51,22 @@ public class ReservationServiceImpl implements ReservationService{
 			throw new UserException("User not logged in");
 		}
 		
-		if(reservation.getRBus().getAvaiableSeats()==0) {
-			throw new ReservationException("No seats available");
-		}
+		Optional<User> opt2=userDao.findById(currentUserSession.getUserId());
+		User user=opt2.get();
+		reservation.setRUser(user);
+		
+		Optional<Bus> opt=busDao.findById(busId);
+		if(opt.isEmpty()) throw new BusException("Bus not found with id :"+busId);
+		
+		
+		
+		Bus bus=opt.get();
+		Integer seats=bus.getAvailableSeats();
+		if(seats<=0) throw new ReservationException("Seats not available try again");
+		
+		bus.setAvailableSeats(bus.getAvailableSeats()-1);
+		
+		reservation.setRBus(bus);
 		
 		return  rDao.save(reservation);
 		

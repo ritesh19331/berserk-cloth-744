@@ -42,10 +42,10 @@ public class UserLoginServiceImp implements UserLoginService {
 //		Optional<CurrentUserSession> currentUserByMobile = userSessionDao.findById(existingUserByMobile.getUserId());
 		
 		
-		if (currentUser.isPresent()) {
+		if (currentUser.isPresent()) 
 
 			throw new LogException("User already Logged-In");
-		}
+		
 		if (existingUserByEmail.getUserPassword().equals(dto.getUserPassword())) {
 
 			String key = RandomString.make(6);
@@ -76,5 +76,4 @@ public class UserLoginServiceImp implements UserLoginService {
 
 		return "Log Out Successful";
 	}
-
 }

@@ -2,6 +2,8 @@ package com.fastrack.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,14 +26,14 @@ public class RouteController {
 	private RouteService routeService;
 	
 	@PostMapping("/admin/route/{key}")
-	public ResponseEntity<Route> addRouteHandler(@RequestBody Route route,@PathVariable("key") String key) throws RouteException, AdminException{
+	public ResponseEntity<Route> addRouteHandler(@Valid @RequestBody Route route,@PathVariable("key") String key) throws RouteException, AdminException{
 		Route addedRoute=routeService.addRoute(route, key);
 		return new ResponseEntity<>(addedRoute,HttpStatus.CREATED);
 		
 	}
 	
 	@PutMapping("/admin/route/{key}")
-	public ResponseEntity<Route> updateRouteHandler(@RequestBody Route route, @PathVariable("key") String key) throws RouteException, AdminException{
+	public ResponseEntity<Route> updateRouteHandler(@Valid @RequestBody Route route, @PathVariable("key") String key) throws RouteException, AdminException{
 		Route updatedRoute=routeService.updateRoute(route, key);
 		return new ResponseEntity<Route>(updatedRoute,HttpStatus.OK);
 	}
