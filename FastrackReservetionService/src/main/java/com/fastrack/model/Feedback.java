@@ -39,6 +39,5 @@ public class Feedback {
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Bus fBus;
-	
 
 }
