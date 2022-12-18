@@ -34,10 +34,10 @@ public class AdminLoginServiceImp implements AdminLoginService {
 		
 		Optional<CurrentAdminSession> currentAdminOpt = adminSessionDao.findById(existingAdmin.getAdminId());
 
-		if (currentAdminOpt.isPresent()) {
+		if (currentAdminOpt.isPresent()) 
 
 			throw new LogException("Admin already Logged-In");
-		}
+		
 		if (existingAdmin.getAdminPassword().equals(dto.getAdminPassword())) {
 
 			String key = RandomString.make(6);
