@@ -30,7 +30,7 @@
 [10]:https://github.com/abhishek11125
 
 ## EER Diagram
-<img align ="center" width="100%" src="https://github.com/ritesh19331/berserk-cloth-744/blob/main/FastTrackBusServiceErDiagram12.png" />
+<img align ="center" width="100%" src="https://raw.githubusercontent.com/ritesh19331/berserk-cloth-744/main/FastTrackBusServiceErDiagram12.png" />
   
   <img width="1100px" src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png">
   
