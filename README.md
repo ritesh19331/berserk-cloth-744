@@ -29,6 +29,9 @@
 [9]:https://github.com/ritesh19331
 [10]:https://github.com/abhishek11125
 
+## Flow Chart
+<img align ="center" width="100%" src="https://raw.githubusercontent.com/ritesh19331/berserk-cloth-744/main/flowchart.png" />
+
 ## EER Diagram
 <img align ="center" width="100%" src="https://raw.githubusercontent.com/ritesh19331/berserk-cloth-744/main/FastTrackBusServiceErDiagram12.png" />
 
