@@ -13,7 +13,7 @@
 ## Modules
 | Module | Contributor |
 | --- | --- |
-| [Admin][1] and [User Module][2] | [Bishwarup Bhunia][7] |
+| [Admin][1] and [User Module login logout][2] | [Bishwarup Bhunia][7] |
 | [Route][3] and [Feedback Module][6] | [Hemachandran J][8] |
 | [Bus Module][4] | [Ritesh Kumar][9] |
 | [Reservation Module][5] | [Ahishek Kagale][10] |
