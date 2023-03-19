@@ -16,7 +16,7 @@
 | [Admin][1] and [User Module login logout][2] | [Bishwarup Bhunia][7] |
 | [Route][3] and [Feedback Module][6] | [Hemachandran J][8] |
 | [Bus Module][4] | [Ritesh Kumar][9] |
-| [Reservation Module][5] | [Ahishek Kagale][10] |
+| [Reservation Module][5] | [Abhishek Kagale][10] |
 
 [1]:https://github.com/ritesh19331/berserk-cloth-744/blob/main/FastrackReservetionService/src/main/java/com/fastrack/controller/AdminController.java
 [2]:https://github.com/ritesh19331/berserk-cloth-744/blob/main/FastrackReservetionService/src/main/java/com/fastrack/controller/UserController.java
